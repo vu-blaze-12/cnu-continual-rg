@@ -1,5 +1,7 @@
 import random
 import reasoning_gym as rg
+from data.make_copy_task_dataset import make_copy_samples
+
 
 def format_rg_sample(sample: dict) -> str:
     return f"Question: {sample['question'].strip()}\nAnswer: {sample['answer'].strip()}</s>"
@@ -9,10 +11,15 @@ def extract_prompt(sample: dict) -> str:
 
 def make_rg_split(task: str, n_train: int, n_val: int, seed: int = 42):
     random.seed(seed)
-    dataset = rg.create_dataset(task)
-
     total = n_train + n_val
-    all_samples = [dataset[i] for i in range(total)]
+
+    if task == "copy_task":
+        all_samples = make_copy_samples(n=total, seed=seed)
+        dataset = None  # no RG dataset here
+    else:
+        dataset = rg.create_dataset(task)
+        all_samples = [dataset[i] for i in range(total)]
+
     random.shuffle(all_samples)
 
     train_samples = all_samples[:n_train]

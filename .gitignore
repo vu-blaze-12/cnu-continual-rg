@@ -1,0 +1,39 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+env/
+venv/
+
+# =========================
+# Model checkpoints & weights
+# =========================
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+
+# =========================
+# Experiment tracking
+# =========================
+wandb/
+
+# =========================
+# Archives / temp files
+# =========================
+*.zip
+external/checkpo
+
+# =========================
+# OS / editor junk
+# =========================
+.DS_Store
+.vscode/
